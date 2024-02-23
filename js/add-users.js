@@ -22,9 +22,6 @@ const checkUsername = (username) => {
     } else {
         createUserObject(username)
     }
-    
-  
-    
 }
 
 const createUserObject = (username) => {
@@ -36,11 +33,11 @@ const createUserObject = (username) => {
    saveUser(user)
 }
 
-const getUsers = () => {
+export const getUsers = () => {
     return JSON.parse(localStorage.getItem('users')) || []
 }
 
-const sendUsers = (users) => {
+export const sendUsers = (users) => {
     return localStorage.setItem('users', JSON.stringify(users))
 }
 
@@ -65,9 +62,7 @@ const displayUsers = () => {
     const users = getUsers()
     let html = '<div class="users-list">'
     users.forEach(user => {
-
-        const username = user.name[0].toUpperCase() + user.name.slice(1)
-
+     const username = user.name[0].toUpperCase() + user.name.slice(1)
         html += `
             <div class="user-container">
                 <p class="user-name">${username}</p>

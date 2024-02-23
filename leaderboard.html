@@ -5,12 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/leaderboard.css">
-    <script src="./js/leaderboard.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/leaderboard.js" defer type="module"></script>
     <title>Start Page</title>
 </head>
 
 <body>
-    <h1>Leaderboard</h1>
+    <main class="page-container">
+        <div class="leaderboard-container">
+            <h1 class="title">LEADEROARD</h1>
+            <div class="leaderboard-list-container" id="leaderboard-list-container"></div>
+        </div>
+
+        <div class="time-container">
+            <form class="time-form">
+                <div class="user-select-container">
+                    <label for="user-select">Select Username</label>
+                    <select id="user-select"></select>
+                </div>
+
+                <div class="time-inputs-container">
+                    <h4>Enter Your Time</h4>
+                    <div class="seconds-container">
+                        <input type="number" id="minutes-input" placeholder="min.." min="0" max="59">
+                        <span>:</span>
+                        <input type="number" id="seconds-input" placeholder="sec.." min="0" max="59">
+                    </div>
+                </div>
+                <p id="time-message" class="time-message"></p>
+                <div class="time-button-container">
+                    <button class="time-button" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </main>
 </body>
 
 </html>
