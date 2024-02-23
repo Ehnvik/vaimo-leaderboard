@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Kdam Thmor Pro", sans-serif;
+  color: black;
+}
+
+.page-container {
+  background-image: url("../img/vaimo-mountains.jpg");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title-one {
+  margin-bottom: 10px;
+}
+
+.rise {
+  text-shadow: -0.01em -0.01em 0.01em #000;
+  text-shadow: 0em 0.01em white, 0em 0.02em white, 0em 0.02em 0.03em white,
+    -0.01em 0.01em #333, -0.02em 0.02em #333, -0.03em 0.03em #333,
+    -0.04em 0.04em #333, -0.01em -0.01em 0.03em #000,
+    -0.02em -0.02em 0.03em #000, -0.03em -0.03em 0.03em #000;
+}
+
+.button-container {
+  margin-top: 25px;
+}
+
+button {
+  font-family: "Kdam Thmor Pro", sans-serif;
+  width: 150px;
+  height: 45px;
+  border-radius: 8px;
+  text-shadow: -0.01em -0.01em 0.01em #000;
+  background-color: #fabf2b;
+  font-size: 14px;
+  transition: all ease-in-out 0.15s;
+  cursor: pointer;
+  border: 2px solid #333333;
+}
+
+button:hover {
+  background-color: #333333;
+  color: #fabf2b;
+}
+
+@media (min-width: 768px) {
+  .title-one {
+    font-size: 38px;
+  }
+}

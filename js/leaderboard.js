@@ -48,7 +48,9 @@ const collectTimeData = (e) => {
 
 const validateTimeData = (minutes, seconds) => {
     $('#time-error-message').text('')
-    if (minutes >= 0 && minutes < 60 && seconds >= 0 && seconds < 60) {
+    const mins = Number(minutes);
+    const secs = Number(seconds);
+    if ((mins >= 0 && secs >= 0) && (mins < 60 && secs < 60) && (mins > 0 || secs > 0 || (minutes === '00' && seconds === '00'))) {
         formatTimeData(minutes, seconds)
         $('#time-message').text('Time updated')
         setTimeout(() => {
