@@ -4,7 +4,7 @@ $(() => {
             $(this).text('Go!');
         },
         function() {
-            $(this).text('Begin');
+            $(this).text('Ready');
         }
-    );
+     );
 });
