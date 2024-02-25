@@ -1,5 +1,8 @@
+import { drivers } from "./drivers.js"
+
 $( ()=> {
 $('.user-add-form').on('submit', addNewUser)
+displayDrivers()
 displayUsers()
 })
 
@@ -58,6 +61,23 @@ const deleteUser = () => {
     })
 }
 
+const displayDrivers = () => {
+    let html = ''; 
+
+    drivers.forEach(driver => {
+        html += `
+            <div class="driver-container">
+                <img class="driver-img" src="${driver.img}" alt="Image on ${driver.name}">
+                <h3 class="driver-name">${driver.name}</h3>
+                <p class="driver-team">${driver.team}</p>
+            </div>
+        `;
+    });
+
+    $('.drivers-slider').html(html); 
+    initializeSlider(); 
+};
+
 const displayUsers = () => {
     const users = getUsers()
     let html = '<div class="users-list">'
@@ -66,7 +86,7 @@ const displayUsers = () => {
         html += `
             <div class="user-container">
                 <p class="user-name">${username}</p>
-                <button class="delete-user-btn" id="${user.id}">Delete</button>
+                <i class="fa-solid fa-delete-left" id="${user.id}"></i>
             </div>
         `
     })
@@ -74,4 +94,43 @@ const displayUsers = () => {
     html += '</div>'
     $('#user-list-wrapper').html(html) 
     deleteUser()
+}
+
+const initializeSlider = () => {
+    $('.drivers-slider').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 5000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    })
 }
