@@ -8,29 +8,44 @@ $('.user-add-form').on('submit', createNewUser)
 displayDrivers()
 displayUsers()
 disableChosenDrivers()
-
-$('#user-name-input').on('change', function() {
-    username = $(this).val().trim().toLowerCase();
-});
-
-$(document).on('click', '.driver-img', function(e) {
-    const driverId = $(this).data('driver-id');
-    selectedDriver = drivers.find(driver => driver.id === driverId.toString());
-    $('.driver-img').removeClass('driver-selected');
-    $(this).addClass('driver-selected');
-});
-
+checkUsersAndToggleContinueButton()
+handleContinueBtn()
+usernameToLowerCase()
+toggleSelectedDriverClass()
 })
+
+
+const toggleSelectedDriverClass = () => {
+    $(document).on('click', '.driver-img', function() {
+        const driverId = $(this).data('driver-id').toString();
+        if (selectedDriver && selectedDriver.id === driverId) {
+            selectedDriver = null;
+            $('.driver-img').removeClass('driver-selected');
+        } else {
+            selectedDriver = drivers.find(driver => driver.id === driverId);
+            $('.driver-img').removeClass('driver-selected');
+            $(this).addClass('driver-selected');
+        }
+    });
+}
+
+const usernameToLowerCase = () => {
+    $('#user-name-input').on('change', function() {
+        username = $(this).val().trim().toLowerCase();
+    });
+}
 
 const disableChosenDrivers = () => {
     const users = getUsers();
-
     $('.driver-img').each(function() {
         const driverId = $(this).data('driver-id').toString();
         const isChosen = users.some(user => user.driver && user.driver.id === driverId);
 
         if (isChosen) {
             $(this).addClass('driver-taken');
+        } else {
+            $(this).removeClass('driver-taken');
+            $('.driver-img').removeClass('driver-selected');
         }
     });
 };
@@ -43,6 +58,12 @@ const createNewUser = (e) => {
         setTimeout(() => {
             $('#username-message').text('');
         }, 5000);
+        $('.driver-img').removeClass('driver-selected');
+       } else if(username.length > 15) {
+        $('#username-message').text('Please choose a shorter username')
+        setTimeout(() => {
+            $('#username-message').text('');
+        }, 5000);
        } else if (selectedDriver === null) {
         $('#driver-message').text('Please select a driver')
         setTimeout(() => {
@@ -50,14 +71,18 @@ const createNewUser = (e) => {
         }, 5000);
        } else  {
         checkUsernameAndDriver(username, selectedDriver)
+        $('#driver-message').text('Driver created successfully')
+        setTimeout(() => {
+            $('#driver-message').text('');
+        }, 5000);
        }
+       
        username = ""
        selectedDriver = null
        $('#user-name-input').val('')
 }
 
 const checkUsernameAndDriver = (username, selectedDriver) => {
-    console.log(username, selectedDriver);
     const users = getUsers()
     const user = users.find((user) => user.name === username)
     const driver = users.find(user => user.driver.id === selectedDriver.id)
@@ -106,6 +131,7 @@ const saveUser = (user) => {
     sendUsers(users)
     displayUsers()
     disableChosenDrivers()
+    checkUsersAndToggleContinueButton()
 }
 
 const deleteUser = () => {
@@ -115,7 +141,29 @@ const deleteUser = () => {
         users = users.filter(user => user.id.toString() !== userId)
         sendUsers(users)
         displayUsers()
+        checkUsersAndToggleContinueButton()
+        disableChosenDrivers()
     })
+}
+
+const checkUsersAndToggleContinueButton = () => {
+    const users = getUsers()
+    if (users.length > 0) {
+        $('#continue-btn').removeAttr('disabled');
+        $('#continue-btn').removeClass('continue-btn-disable');
+    } else {
+        $('#continue-btn').attr('disabled', 'disabled');
+        $('#continue-btn').addClass('continue-btn-disable');
+    }
+}
+
+const handleContinueBtn = () => {
+    $('#continue-btn').on('click', function() {
+        if (!$(this).is(':disabled')) {
+            window.location.href = $(this).data('url');
+        }
+    });
+    
 }
 
 const displayDrivers = () => {

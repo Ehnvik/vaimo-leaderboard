@@ -26,20 +26,19 @@
                     <input class="user-name-input" type="text" id="user-name-input" placeholder="Username...">
 
                 </div>
-                <p class="username-message" id="username-message"></p>
+                <p class="username-message message" id="username-message"></p>
                 <div class="drivers-slider">
                     <div class="driver">
                     </div>
                 </div>
-                <p class="driver-message" id="driver-message"></p>
+                <p class="driver-message message" id="driver-message"></p>
                 <input type="hidden" id="selected-driver-id" name="driver-id" required>
                 <button type="submit" id="add-user-btn" class="add-user-btn">Add</button>
             </form>
             <div class="user-list-container" id="user-list-wrapper"></div>
             <div class="continue-btn-container">
-                <a href="./leaderboard.html">
-                    <button type="button">Continue</button>
-                </a>
+                <button type="button" id="continue-btn" class="continue-btn-disable" disabled
+                    data-url="./leaderboard.html">Continue</button>
             </div>
         </div>
     </main>

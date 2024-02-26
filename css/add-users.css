@@ -19,8 +19,10 @@ body {
 }
 
 .user-form-container {
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
+  max-height: 80%;
+  overflow-y: auto;
   text-align: center;
   border: #333333 2px solid;
   border-radius: 8px;
@@ -30,7 +32,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(99, 99, 99, 0.7);
+  background-color: rgba(37, 37, 37, 0.7);
   padding: 25px 15px 15px 15px;
 }
 
@@ -40,13 +42,11 @@ body {
 }
 
 .title {
+  color: rgb(219, 217, 217);
   margin: 0 0 25px;
   letter-spacing: 5px;
-  text-shadow: -0.01em -0.01em 0.01em #000;
-  text-shadow: 0em 0.01em white, 0em 0.02em white, 0em 0.02em 0.03em white,
-    -0.01em 0.01em #333, -0.02em 0.02em #333, -0.03em 0.03em #333,
-    -0.04em 0.04em #333, -0.01em -0.01em 0.03em #000,
-    -0.02em -0.02em 0.03em #000, -0.03em -0.03em 0.03em #000;
+  text-shadow: 1px 1px 2px #000;
+  font-style: italic;
 }
 
 .drivers-slider {
@@ -66,6 +66,12 @@ body {
 .slick-dots li button:before {
   color: white;
   opacity: 0.5;
+}
+
+.driver-container,
+.driver-img {
+  border: 4px solid transparent;
+  box-sizing: border-box;
 }
 
 .driver-container {
@@ -90,20 +96,20 @@ body {
 }
 
 .driver-name {
+  color: rgb(219, 217, 217);
+  text-shadow: 1px 1px 2px #000;
   margin: 15px 0 0;
 }
 
 .driver-team {
+  color: rgb(219, 217, 217);
+  text-shadow: 1px 1px 2px #000;
   margin: 0;
-}
-
-.continue-btn-container {
-  text-align: end;
 }
 
 input[type="text"] {
   font-family: "Kdam Thmor Pro", sans-serif;
-  width: 180px;
+  width: 200px;
   height: 35px;
   border-radius: 8px;
   text-shadow: -0.01em -0.01em 0.01em #000;
@@ -116,10 +122,14 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
+input[type="text"]::placeholder {
+  color: #000;
+}
+
 input[type="text"]:focus {
   outline: none;
   background-color: #333333;
-  color: #fabf2b;
+  color: #fabf2b !important;
   border-color: #fabf2b;
 }
 
@@ -151,7 +161,7 @@ button:hover {
 
 .driver-taken {
   opacity: 0.5;
-  border: black 4px solid;
+  border: rgb(250, 191, 43) 4px solid;
   transition: none;
   cursor: none;
   pointer-events: none;
@@ -168,6 +178,8 @@ button:hover {
   flex-wrap: wrap;
   justify-content: space-around;
   max-width: 800px;
+  max-height: 120px;
+  overflow-y: auto;
 }
 
 .user-container {
@@ -178,10 +190,79 @@ button:hover {
   gap: 10px;
   border-bottom: #fabf2b 1px solid;
   margin: 15px;
+  color: rgb(219, 217, 217);
+  font-style: italic;
+  text-shadow: 1px 1px 2px #000;
 }
 
 .user-img {
   max-height: 40px;
   max-width: 40px;
   border-radius: 50%;
+}
+
+.delete-user-btn {
+  color: #fabf2b;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.delete-user-btn:hover {
+  transform: scale(1.15);
+}
+
+.message {
+  color: rgb(219, 217, 217);
+}
+
+.continue-btn-container {
+  text-align: end;
+  margin: 15px 0 0 15px;
+}
+
+.continue-btn-disable {
+  opacity: 0.5;
+  transition: none;
+  cursor: none;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fabf2b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(219, 217, 217);
+}
+
+@media (min-width: 430px) {
+  .user-form-container {
+    width: 80%;
+  }
+
+  .users-list {
+    max-height: 140px;
+  }
+}
+
+@media (min-width: 768px) {
+  input[type="text"] {
+    width: 220px;
+  }
+
+  .user-form-container {
+    width: 80%;
+  }
+
+  .users-list {
+    max-height: 180px;
+  }
 }
