@@ -3,7 +3,7 @@ export const drivers = [
         id: "1",
         name: "Max Verstappen",
         team: "Red Bull Racing",
-        img: "../img/max-verstappen.png"
+        img: "img/max-verstappen.png"
     },
     {
         id: "2",
