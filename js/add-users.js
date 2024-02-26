@@ -188,10 +188,11 @@ const displayUsers = () => {
     let html = '<div class="users-list">'
     users.forEach(user => {
      const username = user.name[0].toUpperCase() + user.name.slice(1)
+     const userImageSrc = user.driver?.img ?? 'img/404.webp';
         html += `
             <div class="user-container">
-            <img class="user-img" src="${user.driver.img}" alt="Image on ${user.driver.name}">
-                <p class="user-name">${username}</p>
+            <img class="user-img" src="${userImageSrc}" alt="Image of ${user.driver?.name ?? 'default name'}">
+            <p class="user-name">${username}</p>
                 <i class="fa-solid fa-delete-left delete-user-btn" id="${user.id}"></i>
             </div>
         `
