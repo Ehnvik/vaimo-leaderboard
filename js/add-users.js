@@ -191,7 +191,7 @@ const displayUsers = () => {
      const userImageSrc = user.driver?.img ?? 'img/404.webp';
         html += `
             <div class="user-container">
-            <img class="user-img" src="${userImageSrc}" alt="Image of ${user.driver?.name ?? 'default name'}">
+            <img class="user-img" src="${userImageSrc}" alt="Image of ${user.driver?.name ?? '404 image'}">
             <p class="user-name">${username}</p>
                 <i class="fa-solid fa-delete-left delete-user-btn" id="${user.id}"></i>
             </div>
