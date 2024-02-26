@@ -24,16 +24,16 @@
             <form class="user-add-form">
                 <div>
                     <input class="user-name-input" type="text" id="user-name-input" placeholder="Username...">
-                    <button type="submit" id="add-user-btn" class="add-user-btn">Add</button>
+
                 </div>
-                <p class="error-message" id="error-message"></p>
+                <p class="username-message" id="username-message"></p>
                 <div class="drivers-slider">
                     <div class="driver">
-                        <img class="driver-img" src="" alt="">
-                        <h3 class="driver-name"></h3>
-                        <p class="driver-team"></p>
                     </div>
                 </div>
+                <p class="driver-message" id="driver-message"></p>
+                <input type="hidden" id="selected-driver-id" name="driver-id" required>
+                <button type="submit" id="add-user-btn" class="add-user-btn">Add</button>
             </form>
             <div class="user-list-container" id="user-list-wrapper"></div>
             <div class="continue-btn-container">

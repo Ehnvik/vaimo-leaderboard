@@ -19,9 +19,24 @@ body {
 }
 
 .user-form-container {
-  width: 90%;
+  width: 80%;
+  max-width: 1200px;
   text-align: center;
-  margin-top: 25px;
+  border: #333333 2px solid;
+  border-radius: 8px;
+  box-shadow: 1px 0px 20px rgba(151, 149, 149, 0.8),
+    0px 10px 5px rgba(151, 149, 149, 0.1);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(99, 99, 99, 0.7);
+  padding: 25px 15px 15px 15px;
+}
+
+.user-add-form {
+  border-bottom: #fabf2b solid 1px;
+  margin-bottom: 15px;
 }
 
 .title {
@@ -88,21 +103,21 @@ body {
 
 input[type="text"] {
   font-family: "Kdam Thmor Pro", sans-serif;
-  width: 180px; /* Justera bredden efter behov */
+  width: 180px;
   height: 35px;
   border-radius: 8px;
   text-shadow: -0.01em -0.01em 0.01em #000;
   background-color: #fabf2b;
   font-size: 14px;
   transition: all ease-in-out 0.15s;
-  cursor: text; /* Ändra till 'text' för input-fält */
+  cursor: text;
   border: 2px solid #333333;
-  padding-left: 10px; /* Lägg till lite padding för texten inuti input-fältet */
-  box-sizing: border-box; /* För att inkludera padding och border i den totala bredden */
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus {
-  outline: none; /* Ta bort standardfokusramen */
+  outline: none;
   background-color: #333333;
   color: #fabf2b;
   border-color: #fabf2b;
@@ -124,4 +139,49 @@ button {
 button:hover {
   background-color: #333333;
   color: #fabf2b;
+}
+
+.add-user-btn {
+  margin: 25px 0;
+}
+
+.driver-selected {
+  border: 4px solid #fabf2b;
+}
+
+.driver-taken {
+  opacity: 0.5;
+  border: black 4px solid;
+  transition: none;
+  cursor: none;
+  pointer-events: none;
+}
+
+.user-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 800px;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  border-bottom: #fabf2b 1px solid;
+  margin: 15px;
+}
+
+.user-img {
+  max-height: 40px;
+  max-width: 40px;
+  border-radius: 50%;
 }

@@ -1,27 +1,77 @@
 import { drivers } from "./drivers.js"
 
+let username = ""
+let selectedDriver = null
+
 $( ()=> {
-$('.user-add-form').on('submit', addNewUser)
+$('.user-add-form').on('submit', createNewUser)
 displayDrivers()
 displayUsers()
+disableChosenDrivers()
+
+$('#user-name-input').on('change', function() {
+    username = $(this).val().trim().toLowerCase();
+});
+
+$(document).on('click', '.driver-img', function(e) {
+    const driverId = $(this).data('driver-id');
+    selectedDriver = drivers.find(driver => driver.id === driverId.toString());
+    $('.driver-img').removeClass('driver-selected');
+    $(this).addClass('driver-selected');
+});
+
 })
 
-const addNewUser = (e) => {
+const disableChosenDrivers = () => {
+    const users = getUsers();
+
+    $('.driver-img').each(function() {
+        const driverId = $(this).data('driver-id').toString();
+        const isChosen = users.some(user => user.driver && user.driver.id === driverId);
+
+        if (isChosen) {
+            $(this).addClass('driver-taken');
+        }
+    });
+};
+
+
+const createNewUser = (e) => {
         e.preventDefault()
-       const username = $('#user-name-input').val().trim().toLowerCase()
+       if(username === '') {
+        $('#username-message').text('Please choose a username')
+        setTimeout(() => {
+            $('#username-message').text('');
+        }, 5000);
+       } else if (selectedDriver === null) {
+        $('#driver-message').text('Please select a driver')
+        setTimeout(() => {
+            $('#driver-message').text('');
+        }, 5000);
+       } else  {
+        checkUsernameAndDriver(username, selectedDriver)
+       }
+       username = ""
+       selectedDriver = null
        $('#user-name-input').val('')
-       checkUsername(username)
 }
 
-const checkUsername = (username) => {
+const checkUsernameAndDriver = (username, selectedDriver) => {
+    console.log(username, selectedDriver);
     const users = getUsers()
     const user = users.find((user) => user.name === username)
+    const driver = users.find(user => user.driver.id === selectedDriver.id)
     $('#error-message').text('')
     if(user) {
-        $('#error-message').text(`Username "${username}" already exists`)
-
-    } else if(username === '') {
-        $('#error-message').text('Please choose a username')
+        $('#username-message').text(`Username "${username}" already exists`)
+        setTimeout(() => {
+            $('#username-message').text('');
+        }, 5000);
+    } else if(driver) {
+        $('#driver-message').text(`Driver "${driver.driver.name}" already chosen`)
+        setTimeout(() => {
+            $('#driver-message').text('');
+        }, 5000);
     } else {
         createUserObject(username)
     }
@@ -31,7 +81,13 @@ const createUserObject = (username) => {
     const user = {
         id: Date.now(),
         name: username,
-        time: ""
+        time: "",
+        driver: { 
+            id: selectedDriver.id,
+            name: selectedDriver.name,
+            team: selectedDriver.team,
+            img: selectedDriver.img
+        }
    }
    saveUser(user)
 }
@@ -49,6 +105,7 @@ const saveUser = (user) => {
     users.push(user)
     sendUsers(users)
     displayUsers()
+    disableChosenDrivers()
 }
 
 const deleteUser = () => {
@@ -67,7 +124,7 @@ const displayDrivers = () => {
     drivers.forEach(driver => {
         html += `
             <div class="driver-container">
-                <img class="driver-img" src="${driver.img}" alt="Image on ${driver.name}">
+                <img class="driver-img" src="${driver.img}" data-driver-id="${driver.id}" alt="Image on ${driver.name}">
                 <h3 class="driver-name">${driver.name}</h3>
                 <p class="driver-team">${driver.team}</p>
             </div>
@@ -85,8 +142,9 @@ const displayUsers = () => {
      const username = user.name[0].toUpperCase() + user.name.slice(1)
         html += `
             <div class="user-container">
+            <img class="user-img" src="${user.driver.img}" alt="Image on ${user.driver.name}">
                 <p class="user-name">${username}</p>
-                <i class="fa-solid fa-delete-left" id="${user.id}"></i>
+                <i class="fa-solid fa-delete-left delete-user-btn" id="${user.id}"></i>
             </div>
         `
     })
