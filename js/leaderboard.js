@@ -4,6 +4,7 @@ $(() => {
     $('.time-form').on('submit', collectTimeData)
     selectUser()
     displayLeaderboard()
+    handleResetAndBackBtn()
 })
 
 const timeToSeconds = (timeStr) => {
@@ -81,6 +82,31 @@ const updateUserTime = (time) => {
         displayLeaderboard()
     }
 }
+
+const handleResetAndBackBtn = () => {
+    $('#reset-btn').on('click', function() {
+        const confirmReset = confirm('Are you sure you want to reset the leaderboard?');
+        if (confirmReset) {
+            resetLeaderboard();
+        }
+    });
+
+    $('#back-btn').on('click', function() {
+        window.location.href = $(this).data('url');
+    });
+}
+
+const resetLeaderboard = () => {
+    const users = getUsers().map(user => ({ ...user, time: '' }));
+    sendUsers(users);
+    displayLeaderboard();
+
+    $('#reset-message').text('Leaderboard has been reset.');
+    setTimeout(() => {
+        $('#reset-message').text('');
+    }, 5000);
+}
+
 
 const displayLeaderboard = () => {
     const users = sortUsersByTime()

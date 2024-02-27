@@ -168,7 +168,6 @@ const handleContinueAndHomeBtn = () => {
     $('#back-btn').on('click', function() {
         window.location.href = $(this).data('url');
     });
-    
 }
 
 const displayDrivers = () => {

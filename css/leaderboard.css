@@ -35,7 +35,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(37, 37, 37, 0.7);
-  padding: 25px 15px 25px 15px;
+  padding: 25px 15px 15px 15px;
   color: rgb(219, 217, 217);
 }
 
@@ -52,6 +52,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .leaderboard-list {
@@ -86,6 +87,9 @@ body {
 
 .time-form {
   margin-top: 25px;
+  width: 100%;
+  max-width: 400px;
+  border-bottom: #fabf2b 1px solid;
 }
 
 .time-form span {
@@ -185,6 +189,15 @@ button {
   border: 2px solid #333333;
 }
 
+.back-reset-btn-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 25px;
+  align-items: end;
+}
+
 button:hover {
   background-color: #333333;
   color: #fabf2b;
@@ -269,7 +282,7 @@ button:hover {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    height: 85%;
+    height: 78%;
     padding-top: 25px;
   }
 
@@ -294,7 +307,7 @@ button:hover {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .modal-container {
     display: flex;
     flex-direction: column;
