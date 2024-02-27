@@ -30,8 +30,9 @@ const selectUser = () => {
     userSelect.empty();
 
     users.forEach((user) => {
-        const username = user.name[0].toUpperCase() + user.name.slice(1)
-        userSelect.append(`<option value="${user.id}">${username}</option>`);
+        const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
+        const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
+        userSelect.append(`<option value="${user.id}">${firstName} ${lastName}</option>`);
     });
 }
 
@@ -85,16 +86,14 @@ const displayLeaderboard = () => {
     const users = sortUsersByTime()
     let html = '<div class="leaderboard-list">'
     users.forEach((user, index) => {
-        const username = user.name[0].toUpperCase() + user.name.slice(1)
+        const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
+        const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
         html += `
-        <div class="user-container">
-        <div class="score-position-container">
-        <p class="score-position-number">${index + 1}</p>
-        </div>
-            <div class="name-time-container">
-                <p class="username">${username}</p>
-                <p class="time">${user.time !== '' ? user.time : '00:00'}</p>
-            </div>
+        <div class="user-position-container">
+            <p class="user-position-number">${index + 1}</p>
+            <img class="user-img" src="${user.driver.img}" alt="Image of ${user.driver.name}">
+            <p class="user-name">${firstName} ${lastName}</p>
+            <p class="user-time">${user.time !== '' ? user.time : '00:00'}</p>
         </div>
         `
     })
