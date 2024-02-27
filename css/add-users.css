@@ -47,6 +47,14 @@ body {
   letter-spacing: 5px;
   text-shadow: 1px 1px 2px #000;
   font-style: italic;
+  font-size: 18px;
+}
+
+.name-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .drivers-slider {
@@ -124,6 +132,7 @@ input[type="text"] {
 
 input[type="text"]::placeholder {
   color: #000;
+  font-size: 12px;
 }
 
 input[type="text"]:focus {
@@ -187,12 +196,20 @@ button:hover {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  gap: 10px;
   border-bottom: #fabf2b 1px solid;
   margin: 15px;
   color: rgb(219, 217, 217);
   font-style: italic;
   text-shadow: 1px 1px 2px #000;
+}
+
+.first-name {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.last-name {
+  padding-right: 10px;
 }
 
 .user-img {
@@ -248,21 +265,49 @@ button:hover {
     width: 80%;
   }
 
+  .title {
+    font-size: 20px;
+  }
+
   .users-list {
     max-height: 140px;
   }
 }
 
 @media (min-width: 768px) {
+  .title {
+    font-size: 26px;
+    margin-bottom: 35px;
+  }
+
+  .name-input-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
   input[type="text"] {
     width: 220px;
+  }
+
+  input[type="text"]::placeholder {
+    font-size: 14px;
   }
 
   .user-form-container {
     width: 80%;
   }
 
+  .add-user-btn {
+    width: 120px;
+  }
+
   .users-list {
     max-height: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .title {
+    font-size: 28px;
   }
 }

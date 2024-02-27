@@ -1,7 +1,8 @@
 import { drivers } from "./drivers.js"
 
-let username = ""
 let selectedDriver = null
+let firstName = ""
+let lastName = ""
 
 $( ()=> {
 $('.user-add-form').on('submit', createNewUser)
@@ -10,7 +11,7 @@ displayUsers()
 disableChosenDrivers()
 checkUsersAndToggleContinueButton()
 handleContinueBtn()
-usernameToLowerCase()
+nameToLowerCase()
 toggleSelectedDriverClass()
 })
 
@@ -29,10 +30,15 @@ const toggleSelectedDriverClass = () => {
     });
 }
 
-const usernameToLowerCase = () => {
-    $('#user-name-input').on('change', function() {
-        username = $(this).val().trim().toLowerCase();
+const nameToLowerCase = () => {
+    $('#first-name-input').on('change', function() {
+        firstName = $(this).val().trim().toLowerCase();
     });
+    $('#last-name-input').on('change', function() {
+        lastName = $(this).val().trim().toLowerCase();
+    });
+
+    console.log(firstName, lastName);
 }
 
 const disableChosenDrivers = () => {
@@ -53,59 +59,56 @@ const disableChosenDrivers = () => {
 
 const createNewUser = (e) => {
         e.preventDefault()
-       if(username === '') {
-        $('#username-message').text('Please choose a username')
+       if(firstName === '' || lastName === '') {
+        $('#name-message').text('Please enter your full name')
         setTimeout(() => {
-            $('#username-message').text('');
+            $('#name-message').text('');
         }, 5000);
         $('.driver-img').removeClass('driver-selected');
-       } else if(username.length > 15) {
-        $('#username-message').text('Please choose a shorter username')
+       } else if(firstName.length > 25 || lastName.length > 25) {
+        $('#name-message').text('Please shortern your name')
         setTimeout(() => {
-            $('#username-message').text('');
+            $('#name-message').text('');
         }, 5000);
        } else if (selectedDriver === null) {
-        $('#driver-message').text('Please select a driver')
+        $('#driver-message').text('Please select your representative driver')
         setTimeout(() => {
             $('#driver-message').text('');
         }, 5000);
        } else  {
-        checkUsernameAndDriver(username, selectedDriver)
-        $('#driver-message').text('Driver created successfully')
+        checkIfDriverIsTaken(selectedDriver)
+        $('#driver-message').text('Your profile and driver selection have been successfully saved!')
         setTimeout(() => {
             $('#driver-message').text('');
         }, 5000);
        }
        
-       username = ""
+       firstName = ''
+       lastName = ''
        selectedDriver = null
-       $('#user-name-input').val('')
+       $('#first-name-input').val('')
+       $('#last-name-input').val('')
 }
 
-const checkUsernameAndDriver = (username, selectedDriver) => {
+const checkIfDriverIsTaken = (selectedDriver) => {
     const users = getUsers()
-    const user = users.find((user) => user.name === username)
     const driver = users.find(user => user.driver.id === selectedDriver.id)
     $('#error-message').text('')
-    if(user) {
-        $('#username-message').text(`Username "${username}" already exists`)
-        setTimeout(() => {
-            $('#username-message').text('');
-        }, 5000);
-    } else if(driver) {
+    if(driver) {
         $('#driver-message').text(`Driver "${driver.driver.name}" already chosen`)
         setTimeout(() => {
             $('#driver-message').text('');
         }, 5000);
     } else {
-        createUserObject(username)
+        createUserObject()
     }
 }
 
-const createUserObject = (username) => {
+const createUserObject = () => {
     const user = {
         id: Date.now(),
-        name: username,
+        firstName: firstName,
+        lastName: lastName,
         time: "",
         driver: { 
             id: selectedDriver.id,
@@ -187,12 +190,14 @@ const displayUsers = () => {
     const users = getUsers()
     let html = '<div class="users-list">'
     users.forEach(user => {
-     const username = user.name[0].toUpperCase() + user.name.slice(1)
+     const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
+     const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
      const userImageSrc = user.driver?.img ?? 'img/404.webp';
         html += `
             <div class="user-container">
             <img class="user-img" src="${userImageSrc}" alt="Image of ${user.driver?.name ?? '404 image'}">
-            <p class="user-name">${username}</p>
+            <p class="first-name">${firstName}</p>
+            <p class="last-name">${lastName}</p>
                 <i class="fa-solid fa-delete-left delete-user-btn" id="${user.id}"></i>
             </div>
         `
