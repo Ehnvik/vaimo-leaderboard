@@ -189,24 +189,26 @@ const displayDrivers = () => {
 
 const displayUsers = () => {
     const users = getUsers()
-    let html = '<div class="users-list">'
-    users.forEach(user => {
-     const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
-     const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
-     const userImageSrc = user.driver?.img ?? 'img/404.webp';
-        html += `
-            <div class="user-container">
-            <img class="user-img" src="${userImageSrc}" alt="Image of ${user.driver?.name ?? '404 image'}">
-            <p class="first-name">${firstName}</p>
-            <p class="last-name">${lastName}</p>
-                <i class="fa-solid fa-delete-left delete-user-btn" id="${user.id}"></i>
-            </div>
-        `
-    })
-
-    html += '</div>'
-    $('#user-list-wrapper').html(html) 
-    deleteUser()
+    if(users) {
+        let html = '<div class="users-list">'
+        users.forEach(user => {
+         const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
+         const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
+         const userImageSrc = user.driver?.img ?? 'img/404.webp';
+            html += `
+                <div class="user-container">
+                <img class="user-img" src="${userImageSrc}" alt="Image of ${user.driver?.name ?? '404 image'}">
+                <p class="first-name">${firstName}</p>
+                <p class="last-name">${lastName}</p>
+                    <i class="fa-solid fa-delete-left delete-user-btn" id="${user.id}"></i>
+                </div>
+            `
+        })
+    
+        html += '</div>'
+        $('#user-list-wrapper').html(html) 
+        deleteUser()
+    }
 }
 
 const initializeSlider = () => {
