@@ -19,30 +19,57 @@ body {
   align-items: center;
 }
 
-.hero-section {
-  margin-top: 200px;
+.modal-section {
+  width: 90%;
+  max-width: 1200px;
+  max-height: 80%;
+  overflow-y: auto;
+  text-align: center;
+  border: #333333 2px solid;
+  border-radius: 8px;
+  box-shadow: 1px 0px 20px rgba(151, 149, 149, 0.8),
+    0px 10px 5px rgba(151, 149, 149, 0.1);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(37, 37, 37, 0.7);
+  padding: 25px 15px 25px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 0 5px;
+}
+
+.hero-section {
+  max-width: 700px;
+  border-bottom: #fabf2b 1px solid;
 }
 
 .title-one {
   margin-bottom: 10px;
 }
 
+.title-two {
+  padding-top: 25px;
+}
+
 .title-text {
+  color: rgb(219, 217, 217);
+  margin: 0 0 25px;
   letter-spacing: 5px;
-  text-shadow: -0.01em -0.01em 0.01em #000;
-  text-shadow: 0em 0.01em white, 0em 0.02em white, 0em 0.02em 0.03em white,
-    -0.01em 0.01em #333, -0.02em 0.02em #333, -0.03em 0.03em #333,
-    -0.04em 0.04em #333, -0.01em -0.01em 0.03em #000,
-    -0.02em -0.02em 0.03em #000, -0.03em -0.03em 0.03em #000;
+  text-shadow: 1px 1px 2px #000;
+  font-style: italic;
+  font-size: 18px;
+}
+
+#hubspotForm {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .button-container {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 button {
@@ -65,38 +92,8 @@ button:hover {
 
 @media (min-width: 768px) {
   .title-one {
-    font-size: 38px;
+    font-size: 32px;
   }
-}
-
-@keyframes slideInDown {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.title-text {
-  animation: slideInDown 1s ease-out forwards;
-}
-
-.button-container {
-  animation: slideInUp 1.5s ease-out forwards;
 }
 
 .button-container button {
@@ -116,4 +113,20 @@ button:hover {
   color: #fff;
   background-color: #333333;
   -webkit-text-stroke: 1px #fabf2b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fabf2b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(219, 217, 217);
 }

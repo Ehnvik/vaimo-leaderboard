@@ -10,7 +10,7 @@ displayDrivers()
 displayUsers()
 disableChosenDrivers()
 checkUsersAndToggleContinueButton()
-handleContinueBtn()
+handleContinueAndHomeBtn()
 nameToLowerCase()
 toggleSelectedDriverClass()
 })
@@ -37,8 +37,6 @@ const nameToLowerCase = () => {
     $('#last-name-input').on('change', function() {
         lastName = $(this).val().trim().toLowerCase();
     });
-
-    console.log(firstName, lastName);
 }
 
 const disableChosenDrivers = () => {
@@ -160,11 +158,15 @@ const checkUsersAndToggleContinueButton = () => {
     }
 }
 
-const handleContinueBtn = () => {
+const handleContinueAndHomeBtn = () => {
     $('#continue-btn').on('click', function() {
         if (!$(this).is(':disabled')) {
             window.location.href = $(this).data('url');
         }
+    });
+
+    $('#back-btn').on('click', function() {
+        window.location.href = $(this).data('url');
     });
     
 }

@@ -233,8 +233,14 @@ button:hover {
 }
 
 .continue-btn-container {
-  text-align: end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 15px 0 0 15px;
+}
+
+.fa-circle-left {
+  padding-right: 5px;
 }
 
 .continue-btn-disable {
