@@ -176,6 +176,10 @@ input[type="number"] {
   margin-top: 15px;
 }
 
+.fa-circle-left {
+  padding-right: 5px;
+}
+
 button {
   font-family: "Kdam Thmor Pro", sans-serif;
   width: 100px;
