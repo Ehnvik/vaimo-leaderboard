@@ -28,7 +28,6 @@ const sortUsersByTime = () => {
 const selectUser = () => {
     const users = getUsers();
 
-
     const sortedUsers = users.sort((a, b) => {
         const nameA = a.firstName.toLowerCase() + a.lastName.toLowerCase();
         const nameB = b.firstName.toLowerCase() + b.lastName.toLowerCase();
