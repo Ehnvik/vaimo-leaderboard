@@ -27,10 +27,25 @@ const sortUsersByTime = () => {
 
 const selectUser = () => {
     const users = getUsers();
+
+
+    const sortedUsers = users.sort((a, b) => {
+        const nameA = a.firstName.toLowerCase() + a.lastName.toLowerCase();
+        const nameB = b.firstName.toLowerCase() + b.lastName.toLowerCase();
+
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    })
+
     const userSelect = $('#user-select');
     userSelect.empty();
 
-    users.forEach((user) => {
+    sortedUsers.forEach((user) => {
         const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
         const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
         userSelect.append(`<option value="${user.id}">${firstName} ${lastName}</option>`);
