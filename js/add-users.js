@@ -192,6 +192,8 @@ const displayUsers = () => {
     if(users) {
         let html = '<div class="users-list">'
         users.forEach(user => {
+            console.log('User: ', user);
+            console.log('firstName: ', user.firstName);
          const firstName = user.firstName[0].toUpperCase() + user.firstName.slice(1)
          const lastName = user.lastName[0].toUpperCase() + user.lastName.slice(1)
          const userImageSrc = user.driver?.img ?? 'img/404.webp';
