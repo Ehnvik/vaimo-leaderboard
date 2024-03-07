@@ -9,14 +9,18 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="./js/index.js" defer></script>
     <title>Start Page</title>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
 </head>
 
 <body>
     <main class="page-container">
         <div class="modal-section">
-            <h1 class="title-one title-text" id="title-one">Ready for the Challenge?</h1>
+            <h1 class="title-one title-text" id="title-one">Submit the form with the details of all contestants</h1>
             <div class="hero-section">
-                <h2 class="title-two title-text" id="title-two">Join the ranks of racing legends today!</h2>
+                <div class="hubspotForm" id="hubspotForm"></div>
+                <h2 class="title-two title-text" id="title-two">Once all participants are registered, please click on
+                    Ready
+                </h2>
             </div>
             <div class="button-container">
                 <a href="./add-users.html">
@@ -25,6 +29,14 @@
             </div>
         </div>
     </main>
+    <script>
+        hbspt.forms.create({
+            region: "na1",
+            portalId: "3956127",
+            formId: "dfad2479-567e-48f5-9bb6-8d09da9960df",
+            target: "#hubspotForm"
+        });
+    </script>
 </body>
 
 </html>
